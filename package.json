@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/steinmmi/lpweb_twitter/issues"
   },
-  "homepage": "https://github.com/steinmmi/lpweb_twitter#readme"
+  "homepage": "https://github.com/steinmmi/lpweb_twitter#readme",
+  "dependencies": {
+    "twitter": "^1.7.1"
+  }
 }
