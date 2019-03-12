@@ -1,0 +1,19 @@
+{
+  "name": "lpweb_twitter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steinmmi/lpweb_twitter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/steinmmi/lpweb_twitter/issues"
+  },
+  "homepage": "https://github.com/steinmmi/lpweb_twitter#readme"
+}
