@@ -1,9 +1,10 @@
 const Twitter = require('twitter');
 const config = require('./config.js');
-const express = require('express')
-const socket = require('socket.io')
+const app = require('express')()
+const http = require('http').Server(app);
+const io = require('socket.io')(http)
+
 const fs = require('fs')
-const app = express()
 const port = 3000
 
 const twitter = new Twitter(config)
@@ -15,6 +16,10 @@ var params = {
     tweet_mode: 'extended'
 }
 
+io.on('connection', function (socket) {
+    console.log('a user connected');
+});
+
 twitter.get('search/tweets', params, function (err, data, response) {
     if (err) return err
 
@@ -24,13 +29,9 @@ var stream = twitter.stream('statuses/filter', {
     track: 'javascript'
 });
 stream.on('data', function (event) {
-    fs.writeFile('test.json', JSON.stringify(event, null, 4), () => {
-        if (event.retweeted_status !== undefined) {
-            console.log('File wrote');
-        } else {
-            console.log('Its not a RT');
+    console.log("oui");
 
-        }
-    });
+    io.emit('new tweet', event)
 });
-app.listen(port, () => console.log(`Listening on port ${port}!`))
+
+http.listen(port, '0.0.0.0')
