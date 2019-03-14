@@ -12,7 +12,8 @@ export class HomeComponent implements OnInit {
   tweets: Array<Object> = [];
   ngOnInit() {
     this.socket.fromEvent('new tweet').subscribe((val) => {
-      this.tweets.push(val);
+      this.tweets.unshift(val);
+      console.log(val);
     });
   }
 

@@ -1,0 +1,7 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{tweet.truncated ? tweet.extended_tweet.full_text : tweet.text}}</mat-card-title>
+    <mat-card-subtitle>@{{tweet.user.name}}</mat-card-subtitle>
+  </mat-card-header>
+</mat-card>
