@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/steinmmi/lpweb_twitter#readme",
   "dependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0",
     "twitter": "^1.7.1"
   },
   "devDependencies": {
