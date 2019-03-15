@@ -3,7 +3,7 @@ const config = require('../config.js');
 const T = new Twit(config)
 let stream
 
-function newSearch(str, _callback) {
+function streamSearch(str, _callback) {
     if (stream)
         stream.stop()
     stream = T.stream('statuses/filter', {
@@ -16,5 +16,5 @@ function newSearch(str, _callback) {
 }
 
 module.exports = {
-    newSearch
+    streamSearch
 }
