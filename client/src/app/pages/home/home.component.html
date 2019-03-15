@@ -1,3 +1,8 @@
 <div class="container">
+  <mat-form-field>
+    <input matInput placeholder="Search" [value]="search" (input)="search = $event.target.value">
+  </mat-form-field>
+  <button mat-button (click)="newSearch()">Valider</button>
+  Recherche actuelle : {{actualSearch}}
   <app-twitter-card *ngFor='let tweet of tweets' [tweet]="tweet"></app-twitter-card>
 </div>
