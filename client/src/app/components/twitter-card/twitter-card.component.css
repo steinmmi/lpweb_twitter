@@ -1,3 +1,26 @@
 mat-card {
   margin-bottom: 1em;
 }
+
+mat-icon {
+  cursor: pointer;
+  user-select: none;
+  transform: all .4s;
+}
+
+mat-icon.active {
+  color: gold;
+  animation: shake .4s ease-out;
+}
+
+@keyframes shake {
+  25% {
+    transform: rotateZ(25deg);
+  }
+  65% {
+    transform: rotateZ(-12deg) scale(1.2);
+  }
+  78% {
+    transform: rotateZ(9deg);
+  }
+}

@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TwitterCardComponent implements OnInit {
   @Input() tweet: Object;
   constructor() { }
-
+  favorite: boolean;
   ngOnInit() {
   }
 

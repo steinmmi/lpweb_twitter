@@ -39,7 +39,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {withCre
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
