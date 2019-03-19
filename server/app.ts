@@ -25,7 +25,14 @@ io.on('connection', function (socket) {
 
 
 function init () {
-    TwitterModule.stream.search({q: 'Gilets jaunes'}, (event : Object) => {
+    let data : StreamQuery = {
+        q: 'Gilets jaunes',
+        res: true,
+        rt: true
+    }
+    TwitterModule.stream.search(data, (event : Object) => {
+        console.log(JSON.stringify(event));
+        
         io.emit('new tweet', event)
     })    
 }

@@ -14,6 +14,8 @@ export module stream {
         });
 
         streamInstance.on('tweet', function (event) {
+            if(!data.rt && event.retweeted_status) return 0;
+            if(!data.res && event.in_reply_to_screen_name) return 0;
             _callback(event)
         });
     }

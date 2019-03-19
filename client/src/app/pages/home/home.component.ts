@@ -8,6 +8,8 @@ import { Socket } from 'ngx-socket-io';
 })
 export class HomeComponent implements OnInit {
   search = '';
+  retweets = false;
+  responses = false;
   actualSearch = 'gilets jaunes';
   constructor(private socket: Socket) { }
   tweets: Array<Object> = [];
@@ -24,7 +26,11 @@ export class HomeComponent implements OnInit {
 
   newSearch() {
     this.actualSearch = this.search;
-    this.socket.emit('new search', {q: this.search});
+    this.socket.emit('new search', {
+      q: this.search,
+      rt: this.retweets,
+      res: this.responses
+    });
     this.search = '';
   }
 }
