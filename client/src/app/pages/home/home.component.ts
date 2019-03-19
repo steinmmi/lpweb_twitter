@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
 
   newSearch() {
     this.actualSearch = this.search;
-    this.socket.emit('new search', this.search);
+    this.socket.emit('new search', {q: this.search});
     this.search = '';
   }
 }

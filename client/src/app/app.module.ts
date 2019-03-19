@@ -13,8 +13,7 @@ import {
 import { TwitterCardComponent } from './components/twitter-card/twitter-card.component';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {withCredentials: false} };
 
 @NgModule({
   declarations: [
