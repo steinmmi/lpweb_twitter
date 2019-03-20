@@ -14,6 +14,14 @@ const io = iosocket(server)
 const port = 3000;
 
 io.on('connection', function (socket) {
+    socket.on('autocomplete:users', (data: string) => {
+        TwitterModule.get.users_search({q : data, count: 3}, ( err: any, data: []) => {
+            const users = data.map((value) => {
+                return TwitterModule.tool.jsonToUser(value)
+            })
+            io.emit('autocomplete:users', users)
+        })
+    })
     socket.on('new search', (data) => {
         console.log(data);
 
@@ -31,8 +39,6 @@ function init () {
         rt: true
     }
     TwitterModule.stream.search(data, (event : Object) => {
-        console.log(JSON.stringify(event));
-        
         io.emit('new tweet', event)
     })    
 }

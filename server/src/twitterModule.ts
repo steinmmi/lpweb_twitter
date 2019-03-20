@@ -14,9 +14,51 @@ export module stream {
         });
 
         streamInstance.on('tweet', function (event) {
-            if(!data.rt && event.retweeted_status) return 0;
-            if(!data.res && event.in_reply_to_screen_name) return 0;
-            _callback(event)
+            const tweet = tool.jsonToTweet(event);
+            if(!data.rt && tweet.isRetweet) return 0;
+            if(!data.res && tweet.isReplying) return 0;
+            _callback(tweet)
         });
+    }
+}
+
+export module get {
+    export function users_search(req: {
+        q: string,
+        page?: number,
+        count?: number,
+        include_entities?: boolean
+    }, _callback: Function) {
+        T.get('users/search', req, (err, data, response) => _callback(err, data, response))
+    }
+}
+
+export module tool {
+    export function jsonToUser(json: any): User {
+        let u: User;
+        u = {
+            description: json.description,
+            followers: json.followers_count,
+            friends: json.friends_count,
+            id: json.id,
+            name: json.name,
+            url: json.url,
+            screen_name: json.screen_name,
+            profile_image: json.profile_image_url
+        }
+        return u;
+    }
+    
+    export function jsonToTweet(json : any): Tweet {
+        let t: Tweet
+        t = {
+            id: json.id,
+            message: json.truncated ? json.extended_tweet.full_text : json.text,
+            isQuoting: json.is_quote_status ? json.quoted_status_id : false,
+            isReplying: json.in_reply_to_user_id ? json.in_reply_to_status_id : false,
+            isRetweet: json.retweeted_status ? json.retweeted_status : false,
+            user: jsonToUser(json.user)
+        }
+        return t;
     }
 }

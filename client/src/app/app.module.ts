@@ -8,12 +8,13 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import {
   MatToolbarModule,
   MatCardModule, MatButtonModule, MatIconModule,
-  MatSidenavModule, MatListModule, MatFormFieldModule, MatInputModule, MatCheckboxModule
+  MatSidenavModule, MatListModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatAutocompleteModule
 } from '@angular/material';
 import { TwitterCardComponent } from './components/twitter-card/twitter-card.component';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {withCredentials: false} };
 
 @NgModule({
@@ -21,7 +22,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {withCre
     AppComponent,
     HomeComponent,
     TwitterCardComponent,
-    MainNavComponent
+    MainNavComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,9 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {withCre
     MatInputModule,
     MatCheckboxModule,
     FormsModule,
-    MatIconModule
+    ReactiveFormsModule,
+    MatIconModule,
+    MatAutocompleteModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
