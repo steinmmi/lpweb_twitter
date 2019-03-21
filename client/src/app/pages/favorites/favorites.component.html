@@ -1,16 +1,39 @@
 <div class="container">
-<form>
+
   <h1>Vos favoris</h1>
-  <mat-form-field>
-    <input type="text" placeholder="Chercher un twittos" name="userSearch" [(ngModel)]="userSearch" (ngModelChange)="onChange()" matInput [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of options" [value]="option.name">
-        <img [src]="option.profile_image" [alt]="option.name">
-        {{option.name}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-</form>
+  <div class="users">
+    <h2>Utilisateurs</h2>
+    <form>
+      <mat-form-field>
+        <input type="text" placeholder="Chercher un twittos" name="userSearch" [(ngModel)]="proxyValue"
+          (ngModelChange)="onChange()" matInput [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectionChanged($event)">
+          <mat-option *ngFor="let option of options" [value]="option">
+            <img [src]="option.profile_image" [alt]="option.name">
+            {{option.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+  </div>
+  <mat-divider>
+  </mat-divider>
+  <div class="tweets">
+    <h2>Tweets</h2>
+  </div>
+  <mat-divider>
+    </mat-divider>
+  <mat-expansion-panel expanded>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Utilisateurs
+      </mat-panel-title>
+      <mat-panel-description>
+        Liste des utilisateurs en favoris
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <app-user-fav *ngFor="let fav of favorites" [user]="fav"></app-user-fav>
+  </mat-expansion-panel>
 </div>
 
 <!-- Copyright 2019 Google Inc. All Rights Reserved.

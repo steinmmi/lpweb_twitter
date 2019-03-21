@@ -13,17 +13,23 @@ export class FavoritesComponent implements OnInit {
     private socket: Socket
   ) { }
   options: [];
-  userSearch = '';
+
+  favorites = [];
+  proxyValue: any;
+  onSelectionChanged(event$) {
+    this.proxyValue = null;
+    this.favorites.push(event$.option.value)
+   }
   ngOnInit() {
     this.socket.fromEvent('autocomplete:users').subscribe((val: []) => {
       this.options = val;
-      console.log(val);
     });
   }
   onChange() {
-    console.log(this.userSearch);
-    if(this.userSearch.length > 3) {
-    this.socket.emit('autocomplete:users', this.userSearch);
+
+    const value = this.proxyValue.name || this.proxyValue;
+    if (value.length > 3) {
+    this.socket.emit('autocomplete:users', value);
   }
   }
 }
