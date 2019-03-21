@@ -1,10 +1,15 @@
 <div class="container">
-  <mat-form-field>
-    <input matInput placeholder="Search" [value]="search" (input)="search = $event.target.value">
-  </mat-form-field>
-  <button mat-button (click)="newSearch()">Valider</button>
-  <mat-checkbox [(ngModel)]="retweets">Retweets</mat-checkbox>
-  <mat-checkbox [(ngModel)]="responses">Réponses</mat-checkbox>
-  Recherche actuelle : {{actualSearch}}
+  <h1>Timeline actuelle</h1>
+  <div class="form">
+    <mat-form-field>
+      <input matInput placeholder="Search" [value]="search" (input)="search = $event.target.value">
+    </mat-form-field>
+    
+    <mat-slide-toggle [(ngModel)]="retweets">Retweets</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]="responses"> Réponses</mat-slide-toggle>
+
+    <button color="primary" mat-flat-button (click)="newSearch()">Valider</button>
+  </div>
+  <p>Recherche actuelle : {{actualSearch}}</p>
   <app-twitter-card *ngFor='let tweet of tweets' [tweet]="tweet"></app-twitter-card>
 </div>

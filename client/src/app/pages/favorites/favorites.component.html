@@ -1,4 +1,6 @@
+<div class="container">
 <form>
+  <h1>Vos favoris</h1>
   <mat-form-field>
     <input type="text" placeholder="Chercher un twittos" name="userSearch" [(ngModel)]="userSearch" (ngModelChange)="onChange()" matInput [matAutocomplete]="auto">
     <mat-autocomplete #auto="matAutocomplete">
@@ -9,7 +11,7 @@
     </mat-autocomplete>
   </mat-form-field>
 </form>
-
+</div>
 
 <!-- Copyright 2019 Google Inc. All Rights Reserved.
     Use of this source code is governed by an MIT-style license that

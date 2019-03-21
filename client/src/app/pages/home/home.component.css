@@ -1,3 +1,10 @@
-.container {
-  padding: 1em;
+.form {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.form > * {
+  margin: 0 10px;
 }

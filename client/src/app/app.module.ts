@@ -8,7 +8,7 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import {
   MatToolbarModule,
   MatCardModule, MatButtonModule, MatIconModule,
-  MatSidenavModule, MatListModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatAutocompleteModule
+  MatSidenavModule, MatListModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatAutocompleteModule, MatSlideToggleModule, MatDividerModule
 } from '@angular/material';
 import { TwitterCardComponent } from './components/twitter-card/twitter-card.component';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
@@ -45,6 +45,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {withCre
     ReactiveFormsModule,
     MatIconModule,
     MatAutocompleteModule,
+    MatSlideToggleModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

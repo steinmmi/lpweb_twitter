@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
   search = '';
   retweets = false;
   responses = false;
-  actualSearch = 'gilets jaunes';
+  actualSearch = '';
   constructor(private socket: Socket) { }
   tweets: Array<Object> = [];
   ngOnInit() {
