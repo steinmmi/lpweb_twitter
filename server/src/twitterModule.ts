@@ -12,7 +12,7 @@ export module stream {
         console.log(data['follow']);
         
         streamInstance = T.stream('statuses/filter', {
-            follow: [data['follow']]
+            track: data['q']
         });
 
         streamInstance.on('tweet', function (event) {
