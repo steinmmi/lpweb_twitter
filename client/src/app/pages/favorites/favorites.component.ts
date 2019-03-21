@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Socket } from 'ngx-socket-io';
+import { FavoritesService } from 'src/app/services/favorites.service';
 
 @Component({
   selector: 'app-favorites',
@@ -10,15 +11,19 @@ import { Socket } from 'ngx-socket-io';
 export class FavoritesComponent implements OnInit {
 
   constructor(
-    private socket: Socket
+    private socket: Socket,
+    private favoritesService: FavoritesService
   ) { }
   options: [];
 
-  favorites = [];
+  favoritesUsers = this.favoritesService.getUsers();
+  favoritesTweets = this.favoritesService.getTweets();
+
   proxyValue: any;
   onSelectionChanged(event$) {
     this.proxyValue = null;
-    this.favorites.push(event$.option.value)
+    console.log(event$.option.value);
+    this.favoritesService.addUser(event$.option.value);
    }
   ngOnInit() {
     this.socket.fromEvent('autocomplete:users').subscribe((val: []) => {
@@ -26,10 +31,13 @@ export class FavoritesComponent implements OnInit {
     });
   }
   onChange() {
-
     const value = this.proxyValue.name || this.proxyValue;
     if (value.length > 3) {
-    this.socket.emit('autocomplete:users', value);
+      this.socket.emit('autocomplete:users', value);
+    }
   }
+
+  test() {
+    console.log("test");
   }
 }

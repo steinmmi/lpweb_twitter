@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.socket.fromEvent('new tweet').subscribe((val) => {
       this.tweets.unshift(val);
-      console.log(val);
       if (this.tweets.length > 10) {
         this.tweets.pop();
       }

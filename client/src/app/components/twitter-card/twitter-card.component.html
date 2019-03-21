@@ -2,7 +2,7 @@
   <mat-card-header>
     <img mat-card-avatar [src]="tweet.user.profile_image">
     <mat-card-title>@{{tweet.user.screen_name}}</mat-card-title>
-    <mat-card-subtitle><mat-icon (click)="favorite = !favorite" [ngClass]="{'active': favorite}">star</mat-icon></mat-card-subtitle>
+    <mat-card-subtitle><mat-icon (click)="toggleFavorite()" [ngClass]="{'active': favorite}">star</mat-icon></mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>{{tweet.message}}</mat-card-content>
 </mat-card>

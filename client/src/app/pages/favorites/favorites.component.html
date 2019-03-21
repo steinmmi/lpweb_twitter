@@ -32,8 +32,20 @@
         Liste des utilisateurs en favoris
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <app-user-fav *ngFor="let fav of favorites" [user]="fav"></app-user-fav>
+    <app-user-fav *ngFor="let fav of favoritesUsers" [user]="fav"></app-user-fav>
   </mat-expansion-panel>
+  <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Tweets
+        </mat-panel-title>
+        <mat-panel-description>
+          Liste des tweets en favoris
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <app-twitter-card *ngFor='let tweet of favoritesTweets' (clickEvent)="test()" fav [tweet]="tweet"></app-twitter-card>
+    </mat-expansion-panel>
+  
 </div>
 
 <!-- Copyright 2019 Google Inc. All Rights Reserved.

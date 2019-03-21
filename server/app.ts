@@ -29,14 +29,28 @@ io.on('connection', function (socket) {
             io.emit('new tweet', event)
         })
     })
+
+    socket.on('favorites:tweets:add', (tweet) => {
+        socket.broadcast.emit('favorites:tweets:add', tweet)
+    })
+    socket.on('favorites:tweets:remove', (tweet) => {
+        socket.broadcast.emit('favorites:tweets:remove', tweet)
+    })
+    socket.on('favorites:users:add', (user) => {
+        socket.broadcast.emit('favorites:users:add', user)
+    })
+    socket.on('favorites:users:remove', (user) => {
+        socket.broadcast.emit('favorites:users:remove', user)
+    })
 });
 
 
 function init () {
     let data : StreamQuery = {
-        q: 'Gilets jaunes',
+        q: '',
         res: true,
-        rt: true
+        rt: true,
+        follow: '...'
     }
     TwitterModule.stream.search(data, (event : Object) => {
         io.emit('new tweet', event)

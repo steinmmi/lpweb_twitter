@@ -1,5 +1,5 @@
 interface User {
-    id: number
+    id: string
     name: string
     screen_name: string
     url?: string
