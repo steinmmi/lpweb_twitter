@@ -18,8 +18,8 @@ io.on('connection', function (socket) {
     socket.emit('connection:favorites', {tweets: fTweets, users: fUsers})
 
     socket.on('autocomplete:users', (data: string) => {
-        TwitterModule.get.users_search({q : data, count: 3}, ( err: any, data: []) => {
-            const users = data.map((value) => {
+        TwitterModule.get.users_search({q : data, count: 3}).then((data: any) => {
+            const users = data.map((value: any) => {
                 return TwitterModule.tool.jsonToUser(value)
             })
             socket.emit('autocomplete:users', users)
@@ -31,15 +31,14 @@ io.on('connection', function (socket) {
         })
     })
     socket.on('user:data', (data) => {
-        TwitterModule.get.user(data, (err: any, user: any) => {
+        TwitterModule.get.user(data).then(user => {
             const nUser = TwitterModule.tool.jsonToUser(user);
-            socket.emit('user:data', nUser);
+            socket.emit('user:data', nUser);   
         })
     })
     socket.on('tweet:data', (data) => {
-        console.log(data);
-        TwitterModule.get.tweet(data, (err: any, tweet: any) => {
-            console.log(tweet);
+
+        TwitterModule.get.tweet(data).then((tweet) => {
             const nTweet = TwitterModule.tool.jsonToTweet(tweet);
             socket.emit('tweet:data', nTweet);
         })
@@ -61,7 +60,7 @@ io.on('connection', function (socket) {
         socket.broadcast.emit('favorites:users:remove', user)
     })
     socket.on('trends:data', (request?) => {
-        TwitterModule.get.trends((err: any, trends: any) => {
+        TwitterModule.get.trends().then((trends: any) => {
             socket.emit('trends:data', trends[0].trends);
         })
     })
@@ -71,10 +70,9 @@ io.on('connection', function (socket) {
 function init () {
     console.log('oui');
     
-    TwitterModule.get.trends((err: any, data: any) => {
-        if(err) console.log(err);
+    TwitterModule.get.trends().then((data) => {
         console.log(data);
     })
 }
-init();
+// init();
 server.listen(port, '0.0.0.0')

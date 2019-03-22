@@ -8,7 +8,9 @@ export class TweetService {
   constructor() { }
 
   textToLink(str: string): string {
-    const regex = /(((http|https):\/\/\S*)$)|((^(http|https):\/\/\S*))/;
-    return str.replace(regex, ' <a target="_blank" href="$&">Lien externe</a>');
+    let regex = /([ ]((http|https):\/\/\S*))/;
+    const n = str.replace(regex, ' <a target="_blank" href="$2">Lien externe</a>');
+    regex = /(^(http|https):\/\/\S*)/;
+    return n.replace(regex, '<a target="_blank" href="$&">Lien externe</a>');
   }
 }

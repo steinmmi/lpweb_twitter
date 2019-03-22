@@ -10,7 +10,7 @@
     <mat-slide-toggle [disabled]="favUsers" [(ngModel)]="responses"> Réponses</mat-slide-toggle>
 
     <button color="primary" mat-flat-button (click)="newSearch()">Valider</button>
-    
+    <button color="warn" mat-flat-button (click)="clear()">Rafraichir</button>
     
   </div>
   <p *ngFor="let error of errors" class="error">{{error}}</p>

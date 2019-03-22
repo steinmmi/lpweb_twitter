@@ -1,0 +1,7 @@
+<div class="container">
+  <h1 class="mat-h1">Tendances actuelles</h1>
+<mat-list>
+  <mat-list-item *ngFor="let trend of trends">
+    <a [routerLink]="[ '/search' ]" [queryParams]="{ q: trend.name }">{{trend.name}}</a>
+  </mat-list-item>
+</mat-list>

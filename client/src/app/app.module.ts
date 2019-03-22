@@ -18,6 +18,8 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { UserFavComponent } from './components/user-fav/user-fav.component';
 import { TweetComponent } from './pages/tweet/tweet.component';
 import { UserComponent } from './pages/user/user.component';
+import { TrendsComponent } from './pages/trends/trends.component';
+import { SearchComponent } from './pages/search/search.component';
 const config: SocketIoConfig = { url: 'http://' + window.location.hostname + ':3000', options: {withCredentials: false} };
 
 @NgModule({
@@ -29,7 +31,9 @@ const config: SocketIoConfig = { url: 'http://' + window.location.hostname + ':3
     FavoritesComponent,
     UserFavComponent,
     TweetComponent,
-    UserComponent
+    UserComponent,
+    TrendsComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

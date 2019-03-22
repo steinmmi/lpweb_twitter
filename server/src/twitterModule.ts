@@ -31,19 +31,43 @@ export module get {
         page?: number,
         count?: number,
         include_entities?: boolean
-    }, _callback: Function) {
-        T.get('users/search', req, (err, data, response) => _callback(err, data, response))
+    }) {
+        return new Promise((resolve, reject) => {
+            T.get('users/search', req, (err, data) => {
+                if(err) reject();
+                resolve(data)
+            })
+        })
+        
     }
 
-    export function user(id: string, _callback: Function) {
-        T.get('users/show', {user_id: id}, (err, data, response) => _callback(err, data, response))
+    export function user(id: string) {
+        return new Promise((resolve, reject) => {
+            T.get('users/show', {user_id: id}, (err, data) => {
+                if (err) reject()
+                resolve(data)
+            })
+        })
+        
     }
 
-    export function tweet(id: string, _callback: Function) {
-        T.get('statuses/show', {id: id}, (err, data, response) => _callback(err, data, response))
+    export function tweet(id: string) {
+        return new Promise((resolve, reject) => {
+            T.get('statuses/show', {id: id}, (err, data) => {
+                if(err) reject()
+                resolve(data)
+            })
+        })
+        
     }
-    export function trends( _callback: Function, id = '23424819') {
-        T.get('trends/place', {id:id}, (err, data, response) => _callback(err, data, response))
+    export function trends( id = '23424819') {
+        return new Promise((resolve, reject) => {
+            T.get('trends/place', {id:id}, (err, data) => {
+                if(err) reject()
+                resolve(data)
+            })
+        })
+        
     }
 }
 
