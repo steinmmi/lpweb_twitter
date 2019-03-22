@@ -34,6 +34,14 @@ export module get {
     }, _callback: Function) {
         T.get('users/search', req, (err, data, response) => _callback(err, data, response))
     }
+
+    export function user(id: string, _callback: Function) {
+        T.get('users/show', {user_id: id}, (err, data, response) => _callback(err, data, response))
+    }
+
+    export function tweet(id: string, _callback: Function) {
+        T.get('statuses/show', {id: id}, (err, data, response) => _callback(err, data, response))
+    }
 }
 
 export module tool {
@@ -56,6 +64,7 @@ export module tool {
         let t: Tweet
         t = {
             id: json.id,
+            id_str: json.id_str,
             message: json.truncated ? json.extended_tweet.full_text : json.text,
             isQuoting: json.is_quote_status ? json.quoted_status_id : false,
             isReplying: json.in_reply_to_user_id ? json.in_reply_to_status_id : false,

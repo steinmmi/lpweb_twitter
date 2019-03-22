@@ -30,7 +30,20 @@ io.on('connection', function (socket) {
             io.emit('new tweet', event)
         })
     })
-
+    socket.on('user:data', (data) => {
+        TwitterModule.get.user(data, (err: any, user: any) => {
+            const nUser = TwitterModule.tool.jsonToUser(user);
+            socket.emit('user:data', nUser);
+        })
+    })
+    socket.on('tweet:data', (data) => {
+        console.log(data);
+        TwitterModule.get.tweet(data, (err: any, tweet: any) => {
+            console.log(tweet);
+            const nTweet = TwitterModule.tool.jsonToTweet(tweet);
+            socket.emit('tweet:data', nTweet);
+        })
+    })
     socket.on('favorites:tweets:add', (tweet) => {
         fTweets.push(tweet);
         socket.broadcast.emit('favorites:tweets:add', tweet)

@@ -1,8 +1,7 @@
 .form {
   display: flex;
-  align-content: center;
+  flex-wrap: wrap;
   align-items: center;
-  height: 60px;
 }
 
 .form > * {

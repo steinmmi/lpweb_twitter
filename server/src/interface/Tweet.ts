@@ -1,8 +1,9 @@
 interface Tweet {
     message: string
-    id: string
+    id: number
     user: User
     isRetweet: boolean
     isQuoting: boolean
     isReplying: boolean
+    id_str: string
 }

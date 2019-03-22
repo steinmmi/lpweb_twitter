@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FavoritesService } from 'src/app/services/favorites.service';
+import { TweetService } from 'src/app/services/tweet.service';
 
 @Component({
   selector: 'app-twitter-card',
@@ -7,20 +8,22 @@ import { FavoritesService } from 'src/app/services/favorites.service';
   styleUrls: ['./twitter-card.component.css']
 })
 export class TwitterCardComponent implements OnInit {
-  @Input() tweet: Object;
+  @Input() tweet: any;
   @Input() fav: boolean;
 
   constructor(
-    private favoritesService: FavoritesService
+    private favoritesService: FavoritesService,
+    private tweetService: TweetService
   ) { }
   initState: boolean;
   favorite: boolean;
   ngOnInit() {
     this.initState = this.fav !== undefined ? true : false;
     this.favorite = this.initState;
-    console.log(this.fav, this.favorite);
-  }
+    console.log(this.tweetService.textToLink(this.tweet.message));
 
+    this.tweet.message = this.tweetService.textToLink(this.tweet.message);
+  }
 
   toggleFavorite() {
     if (this.initState) {

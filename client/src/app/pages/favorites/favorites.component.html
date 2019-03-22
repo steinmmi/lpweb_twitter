@@ -16,25 +16,23 @@
       </mat-form-field>
     </form>
   </div>
+  <mat-expansion-panel expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Utilisateurs
+        </mat-panel-title>
+        <mat-panel-description>
+          Liste des utilisateurs en favoris
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <app-user-fav *ngFor="let fav of favoritesUsers" [user]="fav"></app-user-fav>
+    </mat-expansion-panel>
   <mat-divider>
   </mat-divider>
   <div class="tweets">
     <h2 class="mat-h2">Tweets</h2>
   </div>
-  <mat-divider>
-    </mat-divider>
   <mat-expansion-panel expanded>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Utilisateurs
-      </mat-panel-title>
-      <mat-panel-description>
-        Liste des utilisateurs en favoris
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <app-user-fav *ngFor="let fav of favoritesUsers" [user]="fav"></app-user-fav>
-  </mat-expansion-panel>
-  <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
           Tweets

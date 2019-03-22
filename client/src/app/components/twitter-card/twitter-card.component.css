@@ -2,6 +2,13 @@ mat-card {
   margin-bottom: 1em;
 }
 
+.hoverable {
+  transition: all .2s ease;
+}
+.hoverable:hover {
+  color: #2AD;
+}
+
 mat-icon {
   cursor: pointer;
   user-select: none;
@@ -9,8 +16,11 @@ mat-icon {
 }
 
 mat-icon.active {
-  color: gold;
+  color: gold !important;
   animation: shake .4s ease-out;
+}
+a {
+  text-decoration: unset;
 }
 
 @keyframes shake {
