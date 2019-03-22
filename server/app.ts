@@ -64,6 +64,12 @@ io.on('connection', function (socket) {
             socket.emit('trends:data', trends[0].trends);
         })
     })
+    socket.on('search:tweets', (val) => {
+        TwitterModule.get.search(val).then((data: any) => {
+            data = data.statuses.map((el: any) => TwitterModule.tool.jsonToTweet(el))
+            socket.emit('search:tweets', data);
+        })
+    })
 });
 
 

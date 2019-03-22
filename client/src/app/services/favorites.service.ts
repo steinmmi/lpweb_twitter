@@ -35,11 +35,13 @@ export class FavoritesService {
 
 
   addTweet(tweet: any, update = true) {
+    if (!this.isTweetFav(tweet)) {
     this.tweets.push(tweet);
 
     if (update) {
       this.socket.emit('favorites:tweets:add', tweet);
     }
+  }
   }
 
   getTweets() {
@@ -68,10 +70,31 @@ export class FavoritesService {
     });
   }
   addUser(user: any, update = true) {
+    if (!this.isUserFav(user)) {
     this.users.push(user);
     if (update) {
       this.socket.emit('favorites:users:add', user);
     }
+  }
+  }
+
+  isTweetFav(tweet): boolean {
+    let isPresent = false;
+    this.tweets.forEach((el) => {
+      if (el.id === tweet.id) {
+        isPresent = true
+      }
+    });
+    return isPresent;
+  }
+  isUserFav(user): boolean {
+    let isPresent = false;
+    this.users.forEach((el) => {
+      if (el.id === user.id) {
+        isPresent = true
+      }
+    });
+    return isPresent;
   }
 
   getUsers() {

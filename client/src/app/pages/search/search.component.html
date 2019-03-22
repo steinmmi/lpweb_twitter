@@ -1,3 +1,8 @@
-<p>
-  search works!
-</p>
+<div class="container">
+  <mat-form-field>
+    <input matInput placeholder="Recherche" [(ngModel)]="query">
+  </mat-form-field>
+
+  <app-twitter-card *ngFor='let tweet of results' [tweet]="tweet"></app-twitter-card>
+
+</div>

@@ -38,7 +38,15 @@ export module get {
                 resolve(data)
             })
         })
-        
+    }
+
+    export function search(q: string) {
+        return new Promise((resolve, reject) => {
+            T.get('search/tweets', {q: q, result_type: 'popular'}, (err, data) => {
+                if(err) reject();
+                resolve(data);
+            })
+        })
     }
 
     export function user(id: string) {
@@ -92,7 +100,7 @@ export module tool {
         t = {
             id: json.id,
             id_str: json.id_str,
-            message: json.truncated ? json.extended_tweet.full_text : json.text,
+            message: json.truncated && json.extended_tweet ? json.extended_tweet.full_text : json.text,
             isQuoting: json.is_quote_status ? json.quoted_status_id : false,
             isReplying: json.in_reply_to_user_id ? json.in_reply_to_status_id : false,
             isRetweet: json.retweeted_status ? json.retweeted_status : false,

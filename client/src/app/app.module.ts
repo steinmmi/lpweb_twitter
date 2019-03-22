@@ -20,7 +20,8 @@ import { TweetComponent } from './pages/tweet/tweet.component';
 import { UserComponent } from './pages/user/user.component';
 import { TrendsComponent } from './pages/trends/trends.component';
 import { SearchComponent } from './pages/search/search.component';
-const config: SocketIoConfig = { url: 'http://' + window.location.hostname + ':3000', options: {withCredentials: false} };
+import * as configFile from '../assets/config.json';
+const config: SocketIoConfig = { url: 'http://' + configFile.url + ':3000', options: {withCredentials: false} };
 
 @NgModule({
   declarations: [

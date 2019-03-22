@@ -19,7 +19,7 @@ export class TwitterCardComponent implements OnInit {
   favorite: boolean;
   ngOnInit() {
     this.initState = this.fav !== undefined ? true : false;
-    this.favorite = this.initState;
+    this.favorite = this.initState || this.favoritesService.isTweetFav(this.tweet);
     console.log(this.tweetService.textToLink(this.tweet.message));
 
     this.tweet.message = this.tweetService.textToLink(this.tweet.message);

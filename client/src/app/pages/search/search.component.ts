@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-search',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(
+    private route: ActivatedRoute,
+    private socket: Socket) { }
+  query: string;
+  results = [];
   ngOnInit() {
+    this.route.queryParams.subscribe((params: Params) => {
+      if (params.q) {
+        this.query = params.q;
+        this.search();
+      }
+    });
+
+    this.socket.fromEvent('search:tweets').subscribe((val: any) => {
+      this.results = val;
+    });
   }
 
+  search() {
+    this.socket.emit('search:tweets', this.query);
+  }
 }
