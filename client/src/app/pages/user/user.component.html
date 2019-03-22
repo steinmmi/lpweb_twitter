@@ -9,9 +9,9 @@
     <p [innerHTML]="user.description"></p>
     <a *ngIf="user.url" [href]="user.url">Lien externe</a>
   </mat-card-content>
-  <mat-card-actions>
-    <span>Followers : {{user.followers}}</span>
-    <span>Amis : {{user.friends}}</span>
+  <mat-card-actions class="ad_info">
+    <span>Abonnés : {{user.followers}}</span>
+    <span>Abonnements : {{user.friends}}</span>
   </mat-card-actions>
 </mat-card>
 </div>

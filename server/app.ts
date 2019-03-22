@@ -60,19 +60,21 @@ io.on('connection', function (socket) {
         fUsers.splice(fUsers.indexOf(user), 1);
         socket.broadcast.emit('favorites:users:remove', user)
     })
+    socket.on('trends:data', (request?) => {
+        TwitterModule.get.trends((err: any, trends: any) => {
+            socket.emit('trends:data', trends[0].trends);
+        })
+    })
 });
 
 
 function init () {
-    let data : StreamQuery = {
-        q: '',
-        res: true,
-        rt: true,
-        follow: '...'
-    }
-    TwitterModule.stream.search(data, (event : Object) => {
-        io.emit('new tweet', event)
-    })    
+    console.log('oui');
+    
+    TwitterModule.get.trends((err: any, data: any) => {
+        if(err) console.log(err);
+        console.log(data);
+    })
 }
-// init();
+init();
 server.listen(port, '0.0.0.0')

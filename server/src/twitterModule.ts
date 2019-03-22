@@ -42,6 +42,9 @@ export module get {
     export function tweet(id: string, _callback: Function) {
         T.get('statuses/show', {id: id}, (err, data, response) => _callback(err, data, response))
     }
+    export function trends( _callback: Function, id = '23424819') {
+        T.get('trends/place', {id:id}, (err, data, response) => _callback(err, data, response))
+    }
 }
 
 export module tool {

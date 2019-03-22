@@ -26,6 +26,11 @@ export class HomeComponent implements OnInit {
     private favoritesService: FavoritesService) {}
   tweets: Array < Object > = [];
   ngOnInit() {
+    this.socket.emit('trends:data');
+    this.socket.fromEvent('trends:data').subscribe(val => {
+      console.log(val);
+    });
+
     this.socket.fromEvent('new tweet').subscribe((val) => {
       this.tweets.unshift(val);
       if (this.tweets.length > 10) {
