@@ -16,7 +16,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { UserFavComponent } from './components/user-fav/user-fav.component';
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {withCredentials: false} };
+const config: SocketIoConfig = { url: 'http://192.168.1.26:3000', options: {withCredentials: false} };
 
 @NgModule({
   declarations: [

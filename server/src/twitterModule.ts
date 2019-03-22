@@ -9,14 +9,14 @@ export module stream {
         if (streamInstance)
             streamInstance.stop()
 
-        console.log(data['follow']);
+        console.log(data);
         
         streamInstance = T.stream('statuses/filter', {
-            track: data['q']
+            track: data['q'] || undefined,
+            follow: data['follow'] || undefined
         });
 
         streamInstance.on('tweet', function (event) {
-            console.log("oui");
             const tweet = tool.jsonToTweet(event);
             if(!data.rt && tweet.isRetweet) return 0;
             if(!data.res && tweet.isReplying) return 0;
@@ -55,7 +55,7 @@ export module tool {
     export function jsonToTweet(json : any): Tweet {
         let t: Tweet
         t = {
-            id: json.id_str,
+            id: json.id,
             message: json.truncated ? json.extended_tweet.full_text : json.text,
             isQuoting: json.is_quote_status ? json.quoted_status_id : false,
             isReplying: json.in_reply_to_user_id ? json.in_reply_to_status_id : false,

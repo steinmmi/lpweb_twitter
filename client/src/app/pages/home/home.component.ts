@@ -1,5 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Socket } from 'ngx-socket-io';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  Socket
+} from 'ngx-socket-io';
+import {
+  FavoritesService
+} from 'src/app/services/favorites.service';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +19,12 @@ export class HomeComponent implements OnInit {
   retweets = false;
   responses = false;
   actualSearch = '';
-  constructor(private socket: Socket) { }
-  tweets: Array<Object> = [];
+  favUsers: boolean;
+  errors: string[];
+  constructor(
+    private socket: Socket,
+    private favoritesService: FavoritesService) {}
+  tweets: Array < Object > = [];
   ngOnInit() {
     this.socket.fromEvent('new tweet').subscribe((val) => {
       this.tweets.unshift(val);
@@ -22,14 +34,38 @@ export class HomeComponent implements OnInit {
     });
 
   }
+  setError(message: string) {
+    this.errors = [];
+    this.errors.push(message);
+  }
 
   newSearch() {
-    this.actualSearch = this.search;
-    this.socket.emit('new search', {
-      q: this.search,
-      rt: this.retweets,
-      res: this.responses
-    });
-    this.search = '';
+    if (!this.favUsers) {
+      if (this.search.length > 0) {
+        this.actualSearch = this.search;
+        this.socket.emit('new search', {
+          q: this.search,
+          rt: this.retweets,
+          res: this.responses
+        });
+        this.search = '';
+        this.setError('');
+      } else {
+        this.setError('Cette recherche est invalide');
+      }
+    } else {
+      const ids = this.favoritesService.getUsers().map(el => el.id);
+      if (ids.length > 0) {
+      this.socket.emit('new search', {
+        q: undefined,
+        rt: true,
+        res: true,
+        follow: ids.join(',')
+      });
+      this.setError('');
+    } else {
+      this.setError('Vous n\'avez personne en favoris !');
+    }
+    }
   }
 }

@@ -8,3 +8,17 @@
 .form > * {
   margin: 0 10px;
 }
+
+.error:not(:empty) {
+  animation: shake .5s ease-out;
+  color: #D41;
+}
+
+@keyframes shake {
+  25% {
+    transform: translateX(7px)
+  }
+  75% {
+    transform: translateX(-2px)
+  }
+}

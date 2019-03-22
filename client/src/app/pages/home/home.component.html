@@ -1,15 +1,19 @@
 <div class="container">
-  <h1>Timeline actuelle</h1>
+  <h1 class="mat-h1">Timeline actuelle</h1>
+  <mat-slide-toggle [(ngModel)]="favUsers">Favoris uniquement</mat-slide-toggle>
   <div class="form">
     <mat-form-field>
-      <input matInput placeholder="Search" [value]="search" (input)="search = $event.target.value">
+      <input matInput placeholder="Search" [disabled]="favUsers" [(ngModel)]="search">
     </mat-form-field>
-    
-    <mat-slide-toggle [(ngModel)]="retweets">Retweets</mat-slide-toggle>
-    <mat-slide-toggle [(ngModel)]="responses"> Réponses</mat-slide-toggle>
+
+    <mat-slide-toggle [disabled]="favUsers" [(ngModel)]="retweets">Retweets</mat-slide-toggle>
+    <mat-slide-toggle [disabled]="favUsers" [(ngModel)]="responses"> Réponses</mat-slide-toggle>
 
     <button color="primary" mat-flat-button (click)="newSearch()">Valider</button>
+    
+    
   </div>
+  <p *ngFor="let error of errors" class="error">{{error}}</p>
   <p>Recherche actuelle : {{actualSearch}}</p>
   <app-twitter-card *ngFor='let tweet of tweets' [tweet]="tweet"></app-twitter-card>
 </div>

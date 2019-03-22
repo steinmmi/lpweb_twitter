@@ -6,10 +6,20 @@ import { Socket } from 'ngx-socket-io';
 })
 export class FavoritesService {
   constructor( private socket: Socket) {
+    this.socket.fromEvent('connection:favorites').subscribe(({tweets, users}) => {
+      tweets.forEach((tweet) => {
+        this.addTweet(tweet, false);
+      });
+      users.forEach((user) => {
+        this.addUser(user, false);
+      });
+    });
+
     this.socket.fromEvent('favorites:tweets:add').subscribe((tweet) => {
       this.addTweet(tweet, false);
     });
     this.socket.fromEvent('favorites:tweets:remove').subscribe((tweet: string) => {
+      console.log(tweet);
       this.removeTweet(parseInt(tweet, 10), false);
     });
 
@@ -38,6 +48,7 @@ export class FavoritesService {
 
   removeTweet(id: number, update = true) {
     this.tweets.forEach((tweet, index) => {
+      console.log(tweet.id, id);
       if (tweet.id === id) {
         this.tweets.splice(index, 1);
         if (update) {

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FavoritesService } from 'src/app/services/favorites.service';
 
 @Component({
   selector: 'app-user-fav',
@@ -7,9 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class UserFavComponent implements OnInit {
   @Input() user: any;
-  constructor() { }
+  constructor(
+    private favoritesService: FavoritesService
+  ) { }
 
   ngOnInit() {
+  }
+
+  delete() {
+    this.favoritesService.removeUser(this.user.id);
   }
 
 }
