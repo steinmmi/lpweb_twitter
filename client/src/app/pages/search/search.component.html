@@ -2,6 +2,6 @@
   <mat-form-field>
     <input matInput placeholder="Recherche" [(ngModel)]="query">
   </mat-form-field>
-  <button mat-falt-button (click)="search()">Rechercher</button>
+  <button mat-flat-button (click)="search()">Rechercher</button>
   <app-twitter-card *ngFor='let tweet of results' [tweet]="tweet"></app-twitter-card>
 </div>

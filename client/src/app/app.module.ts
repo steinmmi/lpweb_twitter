@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, enableProdMode } from '@angular/core';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,8 +21,8 @@ import { UserComponent } from './pages/user/user.component';
 import { TrendsComponent } from './pages/trends/trends.component';
 import { SearchComponent } from './pages/search/search.component';
 import * as configFile from '../assets/config.json';
-const config: SocketIoConfig = { url: 'http://' + configFile.url + ':3000', options: {withCredentials: false} };
-
+const config: SocketIoConfig = { url: configFile.url, options: {withCredentials: false} };
+enableProdMode();
 @NgModule({
   declarations: [
     AppComponent,
