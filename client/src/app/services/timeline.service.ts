@@ -25,7 +25,7 @@ export class TimelineService {
   }
 
   clearTweets() {
-    this.tweets = [];
+    this.tweets.length = 0;
   }
 
   getTweets() {

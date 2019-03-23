@@ -28,6 +28,8 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    this.socket.emit('search:tweets', this.query);
+    if(this.query.length > 0) { 
+      this.socket.emit('search:tweets', this.query);
+    }
   }
 }

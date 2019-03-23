@@ -22,6 +22,8 @@ export class TweetComponent implements OnInit {
     });
     this.socket.fromEvent('tweet:data').subscribe((val) => {
       this.tweet = val;
+      console.log(this.tweet);
+      
       this.socket.emit('user:data', this.tweet.user.id);
     });
     this.socket.fromEvent('user:data').subscribe((val) => {
