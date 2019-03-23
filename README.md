@@ -4,7 +4,7 @@ _Travail réalisé par Mathieu Steinmetz_
 
 Ce projet a été développé dans le cadre de ma Licence Professionelle.
 
-Vous pouvez y accéder en accédant à [**_ce lien_**](http://twitter.mathieusteinmetz.fr).
+Vous pouvez y accéder en accédant à [**_ce lien_**](http://twitter.mathieusteinmetz.fr) (le chargement peut être long).
 
 ---
 
@@ -96,3 +96,4 @@ Ci-dessous, une liste non-exhaustive d'amélioration possible et d'idées non mi
 - Utiliser une base de données pour stocker les favoris (actuellement stockés dans un variable serveur).
 - Utilisation de statistiques pour la visualisation des données récupérées
 - Suivre le fil d'une conversation en partant d'un tweet '_parent_' (Afficher tout les tweets d'une conversation)
+- Résoudre le problème de script bloquant qui rend la page longue à charger.
