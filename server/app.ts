@@ -11,7 +11,7 @@ app.use(cors({
 }))
 const server = http.createServer(app);
 const io = iosocket(server)
-const port = 3000;
+const port = 3001;
 const fUsers : any[] = [];
 const fTweets : any[] = [];
 io.on('connection', function (socket) {
