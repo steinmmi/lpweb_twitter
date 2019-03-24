@@ -10,17 +10,21 @@ Vous pouvez y accéder en accédant à [**_ce lien_**](http://twitter.mathieuste
 
 ## Objectifs du projet
 
-PoliTweet a pour objectif de permettre à un Politicien ou à son parti politique d'accéder au maximum de données provenant de [Twitter](https://twitter.com).
+PoliTweet a pour objectif de permettre à un politicien ou à son parti politique d'accéder au maximum de données provenant de [Twitter](https://twitter.com).
 
-Un utilisateur doit pouvoir accéder aux tweets voulu de la façon la plus instinctive et logique possible.
+Un utilisateur doit pouvoir accéder aux tweets voulus de la façon la plus instinctive et logique possible.
 
-Les moyens de recherche et les outils mis à disposition de l'utilisateur doivent être cohérents et profitable pour ce dernier.
+Les moyens de recherche et les outils mis à disposition de l'utilisateur doivent être cohérents et profitables pour ce dernier.
 
 ---
 
 ## Travail réalisé
 
-Actuellement, l'utilisateur a accès à un pannel limité de fonctionalités.
+J'ai souhaité créer un produit minimum viable avec certaines fonctionnalités qui ont pu me sembler intéressantes. J'ai tenté de structurer mon code serveur au mieux possible afin qu'il soit compréhensible, facilement réutilisable et que l'ajout de nouvelles fonctionnalités soit rapide.
+
+Ainsi, cette première version du produit pourra être facilement améliorée, en prenant comme idées celles listées en bas de ce document (_Évolutions possibles_).
+
+Actuellement, l'utilisateur a accès à un panel limité de fonctionnalités.
 
 Il peut :
 
@@ -40,7 +44,7 @@ Le compte est actuellement unique :
 
 L'ajout d'un tweet aux favoris par un utilisateur ajoutera ce même tweet en favoris pour n'importe quel autre.
 
-Grâce à une communication avec le serveur par _Socket_ uniquement, le fil d'actualité et les favoris sont mis à jour sur tout les appareils connectés en même temps.
+Grâce à une communication avec le serveur par _Socket_ uniquement, le fil d'actualité et les favoris sont mis à jour sur tous les appareils connectés en même temps.
 
 Il est donc possible à un grand groupe (ex : une réunnion) de travailler sur le site à plusieurs en temps réel.
 
@@ -50,11 +54,11 @@ Il est donc possible à un grand groupe (ex : une réunnion) de travailler sur l
 
 ### Accès au site
 
-Pour allez sur le site [twitter.mathieusteinmetz.fr](http://twitter.mathieusteinmetz.fr). Faites attention à bien y accéder en http (Et non https).
+Pour aller sur le site [twitter.mathieusteinmetz.fr](http://twitter.mathieusteinmetz.fr). Faites attention à bien y accéder en http (et non https).
 
 ### Page d'accueil
 
-La page d'accueil représente le fil d'actualité en direct. Ici vous pouvez choisir un sujet à suivre en direct. Les bouton _Retweets_ et _Réponses_ permettent, une fois activé, d'enlever les filtres correspondants et, par conséquent, d'avoir accès aux tweets qui sont en fait des retweets et/ou des réponses. Chaque changement de filtre doit être par confirmé avec le bouton _Valider_. Chaques sujets doivent être séparés d'une virgule (ex: '`Macron, Gilets jaunes, Débat`').
+La page d'accueil représente le fil d'actualité en direct. Ici vous pouvez choisir un sujet à suivre en direct. Les boutons _Retweets_ et _Réponses_ permettent, une fois activé, d'enlever les filtres correspondants et, par conséquent, d'avoir accès aux tweets qui sont en fait des retweets et/ou des réponses. Chaque changement de filtre doit être confirmé avec le bouton _Valider_. Chaque sujet doit être séparé d'une virgule (ex: '`Macron, Gilets jaunes, Débat`').
 
 Il est possible de filtrer les tweets par '*twittos*' favoris et non pas par sujet en activant le bouton _Favoris uniquement_.
 
@@ -62,18 +66,18 @@ Il est possible de filtrer les tweets par '*twittos*' favoris et non pas par suj
 
 ### Page de favoris
 
-Il est possible d'ajouter des '*twittos*' à ses favoris en les cherchant dans la barre de recherche _Chercher un twittos_, 3 résultats possibles apparaitront en temps réêl pour l'ajouter à la liste. Pour ce faire il suffit de cliquer dessus, ou de le sélectionner avec les touches fléchées. Ce sont ces tweetos qui seront filtrés pour le fil d'actualité si l'option est activée.
+Il est possible d'ajouter des '*twittos*' à ses favoris en les cherchant dans la barre de recherche _Chercher un twittos_, 3 résultats possibles apparaîtront en temps réêl pour l'ajouter à la liste. Pour ce faire il suffit de cliquer dessus, ou de le sélectionner avec les touches fléchées. Ce sont ces tweetos qui seront filtrés pour le fil d'actualité si l'option est activée.
 
 La liste des tweets ajoutés en favoris s'affiche aussi. Il est possible de les retirer de la liste en cliquant à nouveau sur l'étoile.
 
 ### Page de recherche
 
-Cette page permet de chercher des tweets sur un sujet en particulier. La différence majeure avec le fil d'actualité est que ces tweets sont trouvés à l'instant T et triés par popularité, alors que le fil d'actualité affichent les nouveaux tweets en temps réêl.
+Cette page permet de chercher des tweets sur un sujet en particulier. La différence majeure avec le fil d'actualité est que ces tweets sont trouvés à l'instant T et triés par popularité, alors que le fil d'actualité affiche les nouveaux tweets en temps réel.
 
 ### Page des tendances
 
-Il est possible d'accéder aux tendances actuelle de France grâce à cette page.
-Lors du clique sur un sujet, vous serez redirigé vers la page de recherche, avec le champs de recherche pré-rempli.
+Il est possible d'accéder aux tendances actuelles de France grâce à cette page.
+Lors du clique sur un sujet, vous serez redirigé vers la page de recherche, avec le champ de recherches prérempli.
 
 ---
 
@@ -89,9 +93,9 @@ La communication Front -> Back se fait grâce à _Socket.io_
 
 ## Évolutions possibles
 
-Ci-dessous, une liste non-exhaustive d'amélioration possible et d'idées non mise en oeuvre :
+Ci-dessous, une liste non-exhaustive d'amélioration possible et d'idées non mises en oeuvre :
 
-- Ajouter un système de multi-compte, à chaque compte ses favoris.
+- Ajouter un système de multicompte, à chaque compte ses favoris.
   - Par conséquent, pouvoir créer un compte / se connecter.
 - Utiliser une base de données pour stocker les favoris (actuellement stockés dans un variable serveur).
 - Utilisation de statistiques pour la visualisation des données récupérées
